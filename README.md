@@ -1,4 +1,4 @@
-# OSV-Scripts — Operating Systems Lab Practicals (Viva Prep)
+# OSV-Scripts — Operating Systems 
 
 This repository contains my shell-script practicals for the Operating Systems lab. This README explains every script file clearly so you can use it to prepare for viva voce. For each script you will find:
 
