@@ -663,10 +663,5 @@ For issues, questions, or suggestions:
 
 ---
 
-```
-Last Updated: 2024
-Repository Size: Optimized & Maintained
-Status: Active Development
-```
 
 </div>
