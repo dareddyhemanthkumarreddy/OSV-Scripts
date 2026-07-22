@@ -1,622 +1,1353 @@
-# OSV-Scripts — Operating Systems 
+```
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║                    🖥️  OSV-SCRIPTS: OPERATING SYSTEMS LAB  🚀               ║
+║                                                                              ║
+║                  Master OS Concepts Through Shell Scripting                  ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+```
 
-This repository contains my shell-script practicals for the Operating Systems lab. This README explains every script file clearly so you can use it to prepare for viva voce. For each script you will find:
+<div align="center">
 
-- Purpose (what the script demonstrates)
-- How to run (commands)
-- Example input / expected output (short)
-- Important concepts used
-- Step-by-step explanation / key lines to remember for viva
+[![Bash][badge-bash]][bash-url]
+[![Shell Script][badge-shell]][shell-url]
+[![Scripts Count][badge-count]](#-script-categories)
+[![License MIT][badge-license]][license-url]
+[![Last Updated][badge-date]](#)
+[![Stars][badge-stars]][stars-url]
 
-General notes:
-- All scripts use bash (`#!/bin/bash`).
-- Make scripts executable before running:
-  - chmod +x <script>.sh
-  - ./<script>.sh
-- Most scripts are interactive; some use built-in arrays for demonstration.
+[badge-bash]: https://img.shields.io/badge/Bash-5.1+-4EAA25?style=for-the-badge&logo=gnubash&logoColor=white
+[badge-shell]: https://img.shields.io/badge/Shell%20Script-14%20Scripts-4EAA25?style=for-the-badge&logo=linux&logoColor=white
+[badge-count]: https://img.shields.io/badge/Coverage-14%20Scripts-FF6B6B?style=for-the-badge
+[badge-license]: https://img.shields.io/badge/License-MIT-FFD700?style=for-the-badge
+[badge-date]: https://img.shields.io/badge/Updated-2024-61AFFE?style=for-the-badge
+[badge-stars]: https://img.shields.io/badge/Star-If%20Helpful-FFD700?style=for-the-badge
 
----
-
-## hello.sh
-Purpose: Minimal script to demonstrate shebang and printing to stdout.
-
-How to run:
-- chmod +x hello.sh
-- ./hello.sh
-
-Example output:
-- Hello, Bash!
-
-Important concepts:
-- Shebang (`#!/bin/bash`)
-- `echo` prints to standard output
-
-Explanation:
-- Line 1: `#!/bin/bash` — indicates the interpreter to run the script (bash).
-- Line 2: `echo "Hello, Bash!"` — prints a greeting.
-
-Viva tip: Explain why shebang is useful and how `./hello.sh` executes the file when executable permission is set.
+[bash-url]: https://www.gnu.org/software/bash/
+[shell-url]: https://en.wikipedia.org/wiki/Shell_script
+[license-url]: LICENSE
+[stars-url]: https://github.com/dareddyhemanthkumarreddy/OSV-Scripts
 
 ---
 
-## pra1a.sh
-Purpose: Simple echo message — demonstrates printing text.
+### 🎯 **Comprehensive Shell Script Practicals for Operating Systems**
 
-How to run:
-- chmod +x pra1a.sh; ./pra1a.sh
-
-Output:
-- Welcome to  Marwadi University
-
-Key concept:
-- `echo` — output text
-
-Explanation:
-- Single `echo` prints a literal string. Use this to show plain output and newline behavior.
+> A hands-on collection of 14 bash scripts covering **CPU Scheduling**, **Memory Management**, **Process Synchronization**, **File Systems**, and more.
+>
+> Perfect for **OS lab practicals**, **exam preparation**, and **viva voce** practice! 📚
 
 ---
 
-## pra1b.sh
-Purpose: Collects and displays details for two students — demonstrates `read` and variable substitution.
+</div>
 
-How to run:
-- chmod +x pra1b.sh; ./pra1b.sh
+<br>
 
-Input (interactive):
-- Prompts for name, roll, class, branch, batch, city, CGPA for Student 1 and Student 2.
+## 📑 Quick Navigation
 
-Output:
-- Formatted student details printed with labels.
-
-Key concepts:
-- `read` reads input into shell variables.
-- Variable substitution: `$name1`, `$roll1`, etc.
-- No input validation — talk about missing validation in viva.
-
-Step-by-step:
-1. Several `echo` lines show prompts, each followed by `read var` to capture user input.
-2. After both students are read, `echo` lines print the stored variables.
-
-Viva tip: Explain how to validate (e.g., numeric checks) and how to loop to accept N students if needed.
-
----
-
-## pra2a.sh — Arithmetic operations
-Purpose: Demonstrates integer arithmetic using bash arithmetic expansion.
-
-How to run:
-- chmod +x pra2a.sh; ./pra2a.sh
-
-Input:
-- Two integers (a and b)
-
-Output:
-- Addition, Subtraction, Multiplication, Division (integer division)
-
-Key concepts:
-- Arithmetic expansion: `$(( expression ))`
-- Integer division truncates (no decimal unless using `bc`)
-
-Explanation:
-1. Read `a` and `b`.
-2. Compute `sum=$((a + b))`, `diff=$((a - b))`, `prod=$((a * b))`, `quot=$((a / b))`.
-3. Print results.
-
-Viva tip: Mention `expr`, `bc`, and differences for floating-point math.
+```
+┌─ 🟢 BASICS (Level 1)
+│  ├─ hello.sh
+│  ├─ pra1a.sh  
+│  └─ pra1b.sh
+│
+├─ 🟡 INTERMEDIATE (Level 2-3)
+│  ├─ Arithmetic & Conditionals (pra2a-3c)
+│  ├─ Loops & Arrays (pra4a-5c)
+│  └─ Algorithms (pra6a-7b)
+│
+└─ 🔴 ADVANCED (Level 4-5)
+   ├─ CPU Scheduling (pra8.sh)
+   ├─ Synchronization (pra9-10.sh)
+   ├─ Memory (pra11-12.sh)
+   ├─ File Systems (pra13.sh)
+   └─ Disk Scheduling (pra14.sh)
+```
 
 ---
 
-## pra2b.sh — Compare two numbers
-Purpose: Compare two numbers and print which is greater.
+## ⚡ Quick Start
 
-How to run:
-- chmod +x pra2b.sh; ./pra2b.sh
+### 1️⃣ Clone Repository
+```bash
+git clone https://github.com/dareddyhemanthkumarreddy/OSV-Scripts.git
+cd OSV-Scripts
+```
 
-Input:
-- Two integers
+### 2️⃣ Make Scripts Executable
+```bash
+chmod +x *.sh
+```
 
-Output:
-- Greater number or equality message
-
-Key concepts:
-- `test`/`[ ]` operators `-ge`, `-gt`, `-lt`, etc.
-- `if` / `elif` / `else` constructs
-
-Explanation:
-1. Read `a`, `b`.
-2. Use `if [ $a -ge $b ]` to test numeric relation.
-3. `elif` checks the opposite; `else` covers equality (logic note below).
-
-Viva tip: Explain `-ge` is “greater or equal”. Note that equality cases need careful ordering — good practice is to check equality explicitly (`-eq`) if clarity is required.
+### 3️⃣ Run Your First Script
+```bash
+./hello.sh
+# Output: Hello, Bash!
+```
 
 ---
 
-## pra2c.sh — Largest & smallest of three numbers
-Purpose: Find largest and smallest among three integers.
+## 📊 Curriculum Overview
 
-How to run:
-- chmod +x pra2c.sh; ./pra2c.sh
-
-Input:
-- Three integers a, b, c
-
-Output:
-- Largest number and smallest number
-
-Key concepts:
-- Chained numeric comparisons with `&&`.
-- Multiple `if` branches to determine extremes.
-
-Explanation:
-1. Compare `a` with `b` and `c` to pick `largest`.
-2. Similar checks to pick `smallest`.
-3. Print the results.
-
-Viva tip: You can also solve this using arrays and loops, or sort the three numbers.
+| Level | Topics | Scripts | Difficulty | Prerequisites |
+|-------|--------|---------|-----------|---|
+| 🟢 **1** | I/O, Variables | hello, pra1a, pra1b | Easy | None |
+| 🟡 **2** | Arithmetic, Conditionals | pra2a-pra3c | Medium | Level 1 |
+| 🟡 **3** | Loops, Arrays, File Ops | pra4a-pra7b | Medium | Level 2 |
+| 🔴 **4** | CPU Scheduling, Sync | pra8-pra10 | Advanced | Level 3 |
+| 🔴 **5** | Memory, FS, Disk | pra11-pra14 | Advanced | Level 4 |
 
 ---
 
-## pra3a.sh — Simple Interest
-Purpose: Compute simple interest using formula SI = (P * R * T) / 100.
+## 🔧 Script Categories & Details
 
-How to run:
-- chmod +x pra3a.sh; ./pra3a.sh
+### 🟢 **LEVEL 1: Foundations**
 
-Input:
-- p (principal), r (rate), t (time)
+<div align="center">
 
-Output:
-- Simple Interest value
+#### **hello.sh** ─ Your First Bash Script
+```
+PURPOSE     │  Learn shebang and basic output
+RUN         │  ./hello.sh
+OUTPUT      │  Hello, Bash!
+KEY CONCEPT │  #!/bin/bash interpreter directive
+```
 
-Key concepts:
-- Arithmetic expression and integer division.
+**Code Preview:**
+```bash
+#!/bin/bash
+echo "Hello, Bash!"
+```
 
-Explanation:
-1. Read `p`, `r`, `t`.
-2. `si=$((p * r * t / 100))` computes interest (integer result).
-3. Print `si`.
-
-Viva tip: Mention using parentheses for precedence and `bc` for fractional results.
-
----
-
-## pra3b.sh — Check sign (positive/negative/zero)
-Purpose: Determine if an integer is positive, negative, or zero.
-
-How to run:
-- chmod +x pra3b.sh; ./pra3b.sh
-
-Input:
-- One integer
-
-Output:
-- The sign description
-
-Key concepts:
-- Numeric comparison using `-gt`, `-lt`.
-- Branching with `if/elif/else`.
-
-Explanation:
-1. `if [ $num -gt 0 ]` => Positive
-2. `elif [ $num -lt 0 ]` => Negative
-3. `else` => Zero
-
-Viva tip: Cover edge cases and integer-only behavior.
+💡 **Viva Tip:** Explain why shebang is essential and how `chmod +x` makes scripts executable.
 
 ---
 
-## pra3c.sh — Marksheet and classification
-Purpose: Compute total marks, percentage and determine class of result.
+#### **pra1a.sh** ─ Simple Echo
+```
+PURPOSE     │  Practice basic output
+RUN         │  ./pra1a.sh
+OUTPUT      │  Welcome to Marwadi University
+KEY CONCEPT │  echo command & stdout
+```
 
-How to run:
-- chmod +x pra3c.sh; ./pra3c.sh
-
-Input:
-- Marks for Mathematics, Physics, Chemistry
-
-Output:
-- Total, Percentage, Class (Distinction / First / Second / Pass / Fail)
-
-Key concepts:
-- Aggregate arithmetic and conditional thresholds.
-- Integer division truncates percentage.
-
-Explanation:
-1. `total=$((m1 + m2 + m3))`
-2. `percentage=$((total / 3))`
-3. Threshold checks in descending order decide classification.
-
-Viva tip: Explain why order of checks matters (highest threshold first).
+💡 **Viva Tip:** Discuss newline behavior and `-n` flag.
 
 ---
 
-## pra4a.sh — Menu-driven file operations (copy / remove)
-Purpose: Demonstrate `cp`, `rm` and checking exit status.
+#### **pra1b.sh** ─ Interactive Student Details
+```
+PURPOSE     │  Learn variables & user input
+INPUT       │  Student info for 2 students
+OUTPUT      │  Formatted student details
+KEY CONCEPTS│  read, variable substitution, formatting
+```
 
-How to run:
-- chmod +x pra4a.sh; ./pra4a.sh
+**What You'll Learn:**
+- 📝 Capture user input with `read`
+- 🔄 Store data in variables
+- 📋 Format and display information
 
-Input:
-- Menu choices; filenames
+💡 **Viva Tip:** Discuss input validation and error handling.
 
-Output:
-- Success/error messages
-
-Key concepts:
-- `case` statement, `$?` (exit status), `cp`, `rm`
-
-Explanation:
-1. Menu loop (`while true`).
-2. Option 1: Read `src` and `dest`, run `cp` and check `$?` to confirm success.
-3. Option 2: `rm` usage and error handling.
-4. Option 3: exit.
-
-Viva tip: Discuss safe removal (`rm -i`) and permission errors.
+</div>
 
 ---
 
-## pra4b.sh — mv example
-Purpose: Shows the syntax for `mv` command — moving/renaming files.
+### 🟡 **LEVEL 2: Arithmetic & Conditionals**
 
-Notes:
-- Not a full script — just usage examples.
-- Explain `mv source dest` renames or moves and can overwrite unless `-i` used.
+<div align="center">
 
-Viva tip: Distinguish moving vs renaming and discuss permission/overwrite behavior.
+#### **pra2a.sh** ─ Arithmetic Operations
+```
+INPUT       │  Two integers (a, b)
+OUTPUT      │  Sum, Difference, Product, Quotient
+OPERATIONS  │  +, -, *, /
+KEY CONCEPT │  $(( expression )) arithmetic expansion
+```
 
----
+**Formula Reference:**
+```
+sum = a + b
+diff = a - b
+prod = a * b
+quot = a / b (integer division)
+```
 
-## pra4c.sh and pra4c2.sh — Calculator (menu-driven)
-Purpose: Provide a basic arithmetic calculator using `case` inside a loop.
-
-How to run:
-- chmod +x pra4c.sh; ./pra4c.sh
-- chmod +x pra4c2.sh; ./pra4c2.sh
-
-Input:
-- Menu choice and two numbers (order varies by script)
-
-Output:
-- Operation result or error message for division by zero
-
-Key concepts:
-- `case` control flow, arithmetic `$((...))`, divide-by-zero check
-
-Explanation:
-- `pra4c.sh`: requests choice, then on each operation asks for numbers and computes result.
-- `pra4c2.sh`: asks choice, then asks numbers once and uses them for chosen operation.
-
-Viva tip: Explain why division is guarded (b != 0) and integer truncation.
+💡 **Viva Tip:** Integer division truncates; use `bc` for floating-point.
 
 ---
 
-## pra4d.sh — Iterating arrays (days of week)
-Purpose: Demonstrate array declaration and iteration.
+#### **pra2b.sh** ─ Compare Two Numbers
+```
+OPERATORS   │  -ge, -gt, -lt, -le, -eq, -ne
+LOGIC       │  if [ condition ]; then ... fi
+PURPOSE     │  Learn conditional branching
+```
 
-How to run:
-- chmod +x pra4d.sh; ./pra4d.sh
+**Truth Table:**
+| `-ge` | >= | Greater or Equal |
+| `-gt` | > | Greater Than |
+| `-lt` | < | Less Than |
+| `-le` | <= | Less or Equal |
+| `-eq` | == | Equal |
+| `-ne` | != | Not Equal |
 
-Output:
-- Prints each day on its own line
-
-Key concepts:
-- Array declaration: days=( "Monday" ... )
-- Loop: for day in "${days[@]}"
-
-Viva tip: Explain difference between `${array[@]}` and `${array[*]}`.
-
----
-
-## pra5a.sh — Factorial using for loop
-Purpose: Compute factorial using C-style `for` loop.
-
-How to run:
-- chmod +x pra5a.sh; ./pra5a.sh
-
-Input:
-- n (positive integer)
-
-Output:
-- Factorial value
-
-Key concepts:
-- Loop accumulation (`fact=$((fact * i))`)
-
-Viva tip: Discuss overflow for large n and iterative vs recursive implementations.
+💡 **Viva Tip:** Explain the order of condition checking.
 
 ---
 
-## pra5b.sh — Print numbers 1..n using for loop
-Purpose: Simple loop demo.
+#### **pra2c.sh** ─ Max & Min of Three Numbers
+```
+INPUT       │  Three integers (a, b, c)
+OUTPUT      │  Largest and Smallest values
+LOGIC       │  Nested conditionals with && operator
+```
 
-How to run:
-- chmod +x pra5b.sh; ./pra5b.sh
+**Algorithm Idea:**
+```
+largest = (a > b && a > c) ? a : (b > c) ? b : c
+smallest = (a < b && a < c) ? a : (b < c) ? b : c
+```
 
-Input:
-- n
-
-Output:
-- Numbers 1 through n, each on a new line
-
-Key concepts:
-- C-style `for ((i=1;i<=n;i++))`
-
----
-
-## pra5c.sh — Even/Odd using while loop
-Purpose: Label numbers from 1..n as Even or Odd.
-
-How to run:
-- chmod +x pra5c.sh; ./pra5c.sh
-
-Input:
-- n
-
-Output:
-- Lines like "Even: 2", "Odd: 3"
-
-Key concepts:
-- `while` loop, modulo operator `%`, `((i++))` increment
-
-Viva tip: Note the duplicate `i=1` line in the script; harmless but you can point it out as a small cleanup.
+💡 **Viva Tip:** Can also be solved using arrays and sorting!
 
 ---
 
-## pra6a.sh — Reverse digits of a number
-Purpose: Reverse integer digits using arithmetic operations.
+#### **pra3a.sh** ─ Simple Interest Calculator
+```
+FORMULA     │  SI = (P × R × T) / 100
+INPUT       │  Principal (P), Rate (R), Time (T)
+OUTPUT      │  Simple Interest value
+CONCEPT     │  Applying mathematical formulas
+```
 
-How to run:
-- chmod +x pra6a.sh; ./pra6a.sh
+**Example Calculation:**
+```
+P = 1000, R = 5, T = 2
+SI = (1000 × 5 × 2) / 100 = 100
+```
 
-Input:
-- n (non-negative integer)
-
-Output:
-- Reverse of the number printed
-
-Key concepts:
-- `%` to extract last digit, `/` to remove it, building reverse via `rev=$((rev*10 + rem))`
-
-Viva tip: Handle negative numbers by taking absolute value first if asked.
-
----
-
-## pra6b.sh — Prime number check
-Purpose: Naive prime check by trial division up to n/2.
-
-How to run:
-- chmod +x pra6b.sh; ./pra6b.sh
-
-Input:
-- n
-
-Output:
-- Whether n is prime or not
-
-Key concepts:
-- Looping and modulo for divisibility, early break when a divisor found
-
-Explanation:
-1. Special-case `n <= 1` as not prime.
-2. Check divisibility from 2..n/2 (can be optimized to sqrt(n)).
-
-Viva tip: Discuss algorithm complexity O(n) and optimization to O(sqrt(n)).
+💡 **Viva Tip:** Mention precision loss with integer division.
 
 ---
 
-## pra6c.sh — Palindrome number check
-Purpose: Check if a number reads the same forwards and backwards.
+#### **pra3b.sh** ─ Check Sign
+```
+INPUT       │  One integer
+OUTPUT      │  "Positive", "Negative", or "Zero"
+CONDITIONS  │  if-elif-else logic
+```
 
-How to run:
-- chmod +x pra6c.sh; ./pra6c.sh
+**Decision Tree:**
+```
+    INPUT
+     │
+  ├─ > 0? → Positive
+  ├─ < 0? → Negative
+  └─ = 0? → Zero
+```
 
-Input:
-- n
-
-Output:
-- Palindrome or not
-
-Key concepts:
-- Reverse digits into `rev` and compare with original `temp`.
-
-Viva tip: Leading zeros are lost in integer representation; mention how string-based approach would treat such cases.
-
----
-
-## pra7a.sh — Fibonacci series (iterative)
-Purpose: Print first n Fibonacci numbers iteratively.
-
-How to run:
-- chmod +x pra7a.sh; ./pra7a.sh
-
-Input:
-- n
-
-Output:
-- Fibonacci series printed on one line
-
-Key concepts:
-- Iterative sequence generation: keep last two values and update.
-
-Viva tip: Compare iterative vs recursive and mention memoization for optimization.
+💡 **Viva Tip:** Handle edge cases and negative zero.
 
 ---
 
-## pra7b.sh — Toggle case of a string (using awk)
-Purpose: Swap lowercase to uppercase and vice versa using `awk`.
+#### **pra3c.sh** ─ Marksheet & Grade Classification
+```
+INPUT       │  Marks in 3 subjects
+OUTPUT      │  Total, Percentage, Class
+CLASSES     │  Distinction, First, Second, Pass, Fail
+```
 
-How to run:
-- chmod +x pra7b.sh; ./pra7b.sh
+**Grading Scale:**
+```
+┌──────────────────────────┐
+│ 75+ ────────► Distinction│
+│ 60-74 ──────► First      │
+│ 50-59 ──────► Second     │
+│ 40-49 ──────► Pass       │
+│ <40 ───────► Fail        │
+└──────────────────────────┘
+```
 
-Input:
-- A string line
+**Formula:**
+```bash
+total = mark1 + mark2 + mark3
+percentage = total / 3
+```
 
-Output:
-- Same line with swapped letter cases
+💡 **Viva Tip:** Explain why checking highest threshold first matters!
 
-Key concepts:
-- `awk` for per-character processing, `toupper()` and `tolower()`
-
-Explanation:
-1. `awk` loop checks each character's range and converts accordingly.
-2. Non-letter characters are printed unchanged.
-
-Viva tip: Show a short `tr` alternative: `echo "$str" | tr '[:upper:][:lower:]' '[:lower:][:upper:]'`.
-
----
-
-## pra8.sh — CPU Scheduling: FCFS and SJF (non-preemptive)
-Purpose: Demonstrates scheduling metrics: waiting time (WT) and turnaround time (TAT).
-
-How to run:
-- chmod +x pra8.sh; ./pra8.sh
-
-Input:
-- Uses built-in arrays `bt` (burst times) and `at` (arrival times)
-
-Output:
-- Printed WT and TAT for each process and average WT/TAT for FCFS and SJF
-
-Key concepts:
-- FCFS: processes executed in arrival order; compute WT cumulatively and subtract arrival time.
-- SJF (non-preemptive): at each time choose shortest available job, update WT/TAT; if none available increment time.
-
-Viva tip: Explain how time advancement works when no process has arrived and why arrival times change waiting times.
+</div>
 
 ---
 
-## pra9.sh — Producer-Consumer simulation
-Purpose: Single-threaded simulation of producer-consumer problem using integer semaphores (`mutex`, `empty`, `full`).
+### 🟡 **LEVEL 3: Loops, Arrays & Algorithms**
 
-How to run:
-- chmod +x pra9.sh; ./pra9.sh
+<div align="center">
 
-Input:
-- Menu: 1 (Produce), 2 (Consume), 3 (Exit)
+#### **pra4a.sh** ─ Menu-Driven File Operations
+```
+MENU        │  1. Copy  2. Remove  3. Exit
+TOOLS USED  │  cp, rm, case statement, $?
+KEY CONCEPT │  Exit status checking & error handling
+```
 
-Output:
-- "Item Produced"/"Item Consumed" messages or waiting status
+**Menu Flow:**
+```
+MAIN LOOP
+  ├─ Option 1: cp (Copy file)
+  ├─ Option 2: rm (Remove file)
+  ├─ Option 3: exit
+  └─ Check $? (exit status)
+```
 
-Key concepts:
-- Simulated semaphores with integers: `empty`, `full`, `mutex`.
-- Buffer counter increments/decrements and checks.
-
-Viva tip: Emphasize that this is NOT real concurrency — in real systems use kernel semaphores, pthreads, or IPC primitives. Discuss race conditions and how true mutexes protect critical sections.
-
----
-
-## pra10.sh — Dining Philosophers (basic simulation)
-Purpose: Simple interactive simulation of philosopher picking forks to eat.
-
-How to run:
-- chmod +x pra10.sh; ./pra10.sh
-
-Input:
-- Philosopher number 0–4; 5 to exit
-
-Output:
-- "Philosopher X is Eating" or "Philosopher X is Waiting for forks"
-
-Key concepts:
-- Resource allocation array `fork=(1 1 1 1 1)` where 1=available, 0=taken.
-- Left fork index = p, right fork index = (p+1) % 5 (circular table).
-
-Explanation:
-1. `eat()` checks availability of both forks and sets them to 0 when taken; after `sleep 1` forks are released.
-2. If forks not available, prints waiting message.
-
-Viva tip: Discuss deadlock scenarios and solutions (e.g., resource hierarchy, odd philosopher picks right first, using semaphores).
+💡 **Viva Tip:** Discuss safe removal with `rm -i` (interactive).
 
 ---
 
-## pra11.sh — Memory allocation strategies
-Purpose: Demonstrate First Fit, Best Fit, and Worst Fit memory allocation algorithms.
+#### **pra4c.sh & pra4c2.sh** ─ Calculator
+```
+OPERATIONS  │  +, -, ×, ÷
+CONTROL     │  case statement, while loop
+VALIDATION  │  Division by zero checking
+```
 
-How to run:
-- chmod +x pra11.sh; ./pra11.sh
+**Division Protection:**
+```bash
+if [ $b -eq 0 ]; then
+    echo "Error: Cannot divide by zero!"
+else
+    result=$((a / b))
+fi
+```
 
-Input:
-- Block sizes and process sizes are defined inside script
-
-Output:
-- Which block each process is allocated to under each strategy or "Not Allocated"
-
-Key concepts:
-- First Fit: first block that fits; update remaining space.
-- Best Fit: block with smallest leftover after allocation.
-- Worst Fit: block with largest leftover (largest block that fits).
-- Copy blocks into local `b` per strategy so they don't interfere.
-
-Viva tip: Discuss internal fragmentation and which strategy minimizes waste in which scenarios.
+💡 **Viva Tip:** Why guard division operations? (Avoid crashes!)
 
 ---
 
-## pra12.sh — Page replacement: FIFO and LRU
-Purpose: Simulate page replacement algorithms and count page faults.
+#### **pra4d.sh** ─ Array Iteration
+```
+DECLARES    │  days=("Monday" ... "Sunday")
+ITERATES    │  for day in "${days[@]}"
+OUTPUTS     │  Each day on new line
+CONCEPT     │  Indexed arrays
+```
 
-How to run:
-- chmod +x pra12.sh; ./pra12.sh
+**Array Syntax:**
+```bash
+# Declaration
+arr=(elem1 elem2 elem3)
 
-Input:
-- `pages` reference string and `frames` set in script
+# Access
+${arr[0]}           # First element
+${arr[@]}           # All elements
+${#arr[@]}          # Array length
+```
 
-Output:
-- Per-step frames state and total page faults for FIFO and LRU
-
-Key concepts:
-- Page fault counting, frame list maintenance.
-- FIFO uses a circular index to evict oldest page.
-- LRU keeps `last_used` timestamps; evict least recently used frame.
-
-Viva tip: Explain need for data structures to implement LRU efficiently and practical OS implementations (page tables, hardware support).
-
----
-
-## pra13.sh — Directory organization simulation
-Purpose: Simulate single-level and two-level directory schemes (file system structures).
-
-How to run:
-- chmod +x pra13.sh; ./pra13.sh
-
-Input:
-- Interactive menus for creating/deleting/listing/searching files
-
-Output:
-- Messages and file lists per user (two-level) or global (single-level)
-
-Key concepts:
-- Indexed arrays for single level: `single_dir`
-- Associative array for two-level (user -> list of files): `declare -A user_dir`
-- `unset` used to delete entries, manipulation of space-separated strings for per-user files
-
-Viva tip: Explain advantages/disadvantages of directory schemes and how real file systems store metadata (inodes, directories).
+💡 **Viva Tip:** Difference between `${array[@]}` and `${array[*]}`.
 
 ---
 
-## pra14.sh — Disk scheduling: FCFS and SCAN
-Purpose: Simulate disk head movements and compute total seek time for FCFS and SCAN.
+#### **pra5a.sh** ─ Factorial (For Loop)
+```
+INPUT       │  n (positive integer)
+OUTPUT      │  n! (factorial)
+FORMULA     │  n! = n × (n-1) × (n-2) × ... × 1
+ALGORITHM   │  Iterative multiplication
+```
 
-How to run:
-- chmod +x pra14.sh; ./pra14.sh
+**Code Pattern:**
+```bash
+fact=1
+for ((i=2; i<=n; i++)); do
+    fact=$((fact * i))
+done
+```
 
-Input:
-- `requests` list and `head` position are in the script
+**Examples:**
+```
+5! = 5 × 4 × 3 × 2 × 1 = 120
+4! = 4 × 3 × 2 × 1 = 24
+```
 
-Output:
-- Step-by-step movements and final total seek time for each algorithm
-
-Key concepts:
-- Seek distance = absolute difference between head and request
-- FCFS moves in request order
-- SCAN moves in one direction, serves requests, goes to end then reverses
-
-Viva tip: Compare SCAN vs C-SCAN and how scheduling affects average seek time.
+💡 **Viva Tip:** Discuss factorial overflow and recursive implementation.
 
 ---
 
-If you want, I can now:
-- Add short example input/output blocks for every script (I included the most important examples above),
-- Format this README into smaller flashcards per script (one-line summary + 3 exam bullets),
-- Or commit this README into the repository for you.
+#### **pra5b.sh** ─ Print 1 to N
+```
+LOOP TYPE   │  C-style for loop
+FORMAT      │  for ((i=1; i<=n; i++))
+OUTPUT      │  Numbers 1 through n
+```
 
-Tell me which of the three follow-ups you prefer and I will produce the updated README or commit it for you.
+💡 **Viva Tip:** Compare `for` vs `while` vs `seq` approaches.
+
+---
+
+#### **pra5c.sh** ─ Even/Odd Detection
+```
+INPUT       │  n (positive integer)
+OUTPUT      │  "Even: X" / "Odd: Y" for 1..n
+KEY CONCEPT │  Modulo operator (%)
+```
+
+**Logic:**
+```bash
+if [ $((i % 2)) -eq 0 ]; then
+    echo "Even: $i"
+else
+    echo "Odd: $i"
+fi
+```
+
+💡 **Viva Tip:** Explain modulo operator and increment operators `((i++))`.
+
+---
+
+#### **pra6a.sh** ─ Reverse a Number
+```
+ALGORITHM   │  Extract last digit, rebuild reversed
+OPERATIONS  │  Modulo (%), division (/), multiplication
+INPUT       │  Non-negative integer
+OUTPUT      │  Reversed number
+```
+
+**Step-by-Step:**
+```
+Original: 12345
+Step 1: rem = 12345 % 10 = 5,  rev = 5
+Step 2: rem = 1234 % 10 = 4,   rev = 54
+Step 3: rem = 123 % 10 = 3,    rev = 543
+Step 4: rem = 12 % 10 = 2,     rev = 5432
+Step 5: rem = 1 % 10 = 1,      rev = 54321
+Result: 54321 ✓
+```
+
+💡 **Viva Tip:** How to handle negative numbers?
+
+---
+
+#### **pra6b.sh** ─ Prime Number Check
+```
+ALGORITHM   │  Trial division from 2 to n/2
+INPUT       │  Integer n
+OUTPUT      │  "Prime" or "Not Prime"
+COMPLEXITY  │  O(n) → Can optimize to O(√n)
+```
+
+**Logic:**
+```bash
+# Check if any number from 2 to n/2 divides n
+for ((i=2; i<=n/2; i++)); do
+    if [ $((n % i)) -eq 0 ]; then
+        echo "Not Prime"
+        exit
+    fi
+done
+echo "Prime"
+```
+
+**Examples:**
+```
+Prime:     2, 3, 5, 7, 11, 13, 17, 19, 23, 29...
+Not Prime: 4, 6, 8, 9, 10, 12, 14, 15, 16, 18...
+```
+
+💡 **Viva Tip:** Discuss optimization to O(√n) instead of O(n).
+
+---
+
+#### **pra6c.sh** ─ Palindrome Check
+```
+ALGORITHM   │  Compare reversed number with original
+INPUT       │  Integer n
+OUTPUT      │  "Palindrome" or "Not Palindrome"
+CONCEPT     │  Numbers that read same forwards/backwards
+```
+
+**Examples:**
+```
+Palindrome:     121, 1331, 12321, 9009
+Not Palindrome: 123, 1234, 54321
+```
+
+💡 **Viva Tip:** Leading zeros issue in integer representation.
+
+---
+
+#### **pra7a.sh** ─ Fibonacci Series
+```
+OUTPUT      │  First n Fibonacci numbers
+ALGORITHM   │  Iterative sequence generation
+PATTERN     │  Each number = sum of previous two
+```
+
+**Sequence:**
+```
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55...
+    └─ 0+1=1
+        └─ 1+1=2
+             └─ 1+2=3
+                  └─ 2+3=5
+```
+
+**Code:**
+```bash
+a=0; b=1
+for ((i=1; i<=n; i++)); do
+    echo -n "$a "
+    temp=$((a + b))
+    a=$b
+    b=$temp
+done
+```
+
+💡 **Viva Tip:** Compare iterative vs recursive vs memoized approaches.
+
+---
+
+#### **pra7b.sh** ─ Toggle Case (Using AWK)
+```
+INPUT       │  Any string
+OUTPUT      │  Same string with cases swapped
+TOOL        │  awk for character processing
+```
+
+**One-Liner Alternative:**
+```bash
+echo "$str" | tr '[:upper:][:lower:]' '[:lower:][:upper:]'
+```
+
+💡 **Viva Tip:** Compare `tr`, `sed`, `awk` for string manipulation.
+
+</div>
+
+---
+
+### 🔴 **LEVEL 4: CPU Scheduling & Synchronization**
+
+<div align="center">
+
+#### **pra8.sh** ─ CPU Scheduling: FCFS vs SJF
+
+```
+ALGORITHMS  │  FCFS (First-Come-First-Served)
+            │  SJF (Shortest Job First)
+METRICS     │  Waiting Time (WT), Turnaround Time (TAT)
+PURPOSE     │  Compare scheduling effectiveness
+```
+
+**Key Definitions:**
+```
+┌─────────────────────────────────────────────────┐
+│ Burst Time (BT)     │ Time to execute process   │
+│ Arrival Time (AT)   │ When process arrives      │
+│ Completion (CT)     │ When process finishes     │
+│ Waiting Time (WT)   │ CT - AT - BT              │
+│ Turnaround (TAT)    │ CT - AT                   │
+└─────────────────────────────────────────────────┘
+```
+
+**FCFS Algorithm:**
+```
+Processes executed in arrival order
+No preemption, simple, but unfair
+
+Example: BT = [8, 4, 2]
+Process  BT  AT  CT  WT   TAT
+P1       8   0   8   0    8
+P2       4   0   12  8    12
+P3       2   0   14  12   14
+────────────────────────────
+Avg WT = 6.67, Avg TAT = 11.33
+```
+
+**SJF Algorithm:**
+```
+Shortest burst time executes first
+Minimizes average waiting time
+
+Example: BT = [8, 4, 2]
+Process  BT  AT  CT  WT   TAT
+P3       2   0   2   0    2
+P2       4   0   6   2    6
+P1       8   0   14  6    14
+────────────────────────────
+Avg WT = 2.67, Avg TAT = 7.33 ✓ BETTER!
+```
+
+**Comparison Table:**
+| Feature | FCFS | SJF |
+|---------|------|-----|
+| **Avg Wait Time** | Higher ⚠️ | Lower ✓ |
+| **Fairness** | Fair | Unfair (long jobs starve) |
+| **Implementation** | Simple ✓ | Requires BT knowledge |
+| **Real-World** | No | Theoretical ideal |
+
+💡 **Viva Tips:**
+- FCFS suffers from **convoy effect**
+- SJF gives optimal average wait time
+- Real systems use preemptive variants (Round Robin)
+
+---
+
+#### **pra9.sh** ─ Producer-Consumer Problem
+
+```
+PROBLEM     │  Shared buffer between producer & consumer
+SOLUTION    │  Semaphores (mutex, empty, full)
+CONCEPT     │  Synchronization & mutual exclusion
+```
+
+**Semaphore States:**
+```
+┌──────────────────────────────────────────┐
+│ mutex = 1  │ Only 1 process in critical  │
+│ empty = n  │ n empty slots in buffer     │
+│ full = 0   │ 0 filled slots initially    │
+└──────────────────────────────────────────┘
+```
+
+**Producer Process:**
+```bash
+Wait(empty)     # Check if space available
+Wait(mutex)     # Enter critical section
+produce_item()  # Add item
+Signal(mutex)   # Exit critical section
+Signal(full)    # Increment filled count
+```
+
+**Consumer Process:**
+```bash
+Wait(full)      # Check if items available
+Wait(mutex)     # Enter critical section
+consume_item()  # Remove item
+Signal(mutex)   # Exit critical section
+Signal(empty)   # Increment empty count
+```
+
+**Visual Buffer State:**
+```
+Initial:  [empty] [empty] [empty]  empty=3, full=0, mutex=1
+
+After Produce:
+          [item1] [empty] [empty]  empty=2, full=1, mutex=1
+
+After Consume:
+          [empty] [empty] [empty]  empty=3, full=0, mutex=1
+```
+
+⚠️ **Important:** This script simulates only; real systems need kernel semaphores or pthread_mutex.
+
+💡 **Viva Tips:**
+- Explain race conditions and critical sections
+- Mention solutions: locks, semaphores, monitors
+- Compare busy-waiting vs proper synchronization
+
+---
+
+#### **pra10.sh** ─ Dining Philosophers Problem
+
+```
+PROBLEM     │  5 philosophers, 5 forks (deadlock potential)
+CONCEPT     │  Resource allocation & deadlock detection
+PURPOSE     │  Understand synchronization challenges
+```
+
+**Setup:**
+```
+        Philosopher 0
+              │
+         Fork 0   Fork 1
+        /            \
+   Phi 4            Phi 1
+    │                 │
+ Fork 4          Fork 2-Fork 3
+    \               /
+   Philosopher 3-2
+
+Each philosopher needs 2 forks to eat
+Left fork = p, Right fork = (p+1) % 5
+```
+
+**The Deadlock Scenario:**
+```
+Time 0:
+  Philosopher 0 picks fork 0
+  Philosopher 1 picks fork 1
+  Philosopher 2 picks fork 2
+  Philosopher 3 picks fork 3
+  Philosopher 4 picks fork 4
+  
+Result: Everyone holds 1 fork, needs the other
+       → DEADLOCK! Nobody can eat! 💥
+```
+
+**Solutions:**
+
+| Solution | Mechanism | Trade-off |
+|----------|-----------|-----------|
+| **Resource Hierarchy** | Always pick lower fork first | Order dependency |
+| **Odd Philosopher** | One picks right fork first | Asymmetry |
+| **Waiter** | Central controller (Dijkstra) | Central point of failure |
+| **Semaphores** | Protect fork state | Complexity |
+
+**Resource Hierarchy (Recommended):**
+```bash
+if [ $left_fork -lt $right_fork ]; then
+    pick $left_fork
+    pick $right_fork
+else
+    pick $right_fork
+    pick $left_fork
+fi
+```
+
+💡 **Viva Tips:**
+- Deadlock requires: Mutual Exclusion, Hold & Wait, No Preemption, Circular Wait
+- Discuss starvation vs deadlock
+- Compare prevention vs avoidance vs detection
+
+</div>
+
+---
+
+### 🔴 **LEVEL 5: Memory, File Systems & Disk**
+
+<div align="center">
+
+#### **pra11.sh** ─ Memory Allocation Algorithms
+
+```
+ALGORITHMS  │  First Fit, Best Fit, Worst Fit
+PURPOSE     │  Allocate processes to memory blocks
+ISSUE       │  Minimize fragmentation
+```
+
+**Allocation Strategies:**
+
+| Strategy | Logic | Speed | Fragmentation |
+|----------|-------|-------|---|
+| **First Fit** | 1st block ≥ size | Fast O(n) | Moderate |
+| **Best Fit** | Smallest block ≥ size | Slow O(n) | Minimal ✓ |
+| **Worst Fit** | Largest block that fits | Medium O(n) | Spread waste |
+
+**Example:**
+```
+Available Blocks: [100] [500] [200] [600]
+Request: 300
+
+┌──────────────────────────────────────┐
+│ First Fit:                           │
+│ First block ≥ 300? Yes → Block 2     │
+│ Allocate: [100] [200*] [200] [600]   │
+│ Wasted: 200                          │
+└──────────────────────────────────────┘
+
+┌──────────────────────────────────────┐
+│ Best Fit:                            │
+│ Smallest block ≥ 300? Block 4 (600)  │
+│ Allocate: [100] [500] [200] [300*]   │
+│ Wasted: 300                          │
+└──────────────────────────────────────┘
+
+┌──────────────────────────────────────┐
+│ Worst Fit:                           │
+│ Largest block? Block 4 (600)         │
+│ Allocate: [100] [500] [200] [300*]   │
+│ Wasted: 300                          │
+└──────────────────────────────────────┘
+```
+
+**Fragmentation Types:**
+```
+Internal:   Wasted space INSIDE allocated block
+External:   Wasted space BETWEEN allocated blocks
+```
+
+💡 **Viva Tips:**
+- First Fit: Fastest, good enough for practice
+- Best Fit: Minimal waste, but slower
+- Worst Fit: Counterintuitive; doesn't perform better
+
+---
+
+#### **pra12.sh** ─ Page Replacement Algorithms
+
+```
+ALGORITHMS  │  FIFO, LRU
+PURPOSE     │  Minimize page faults in virtual memory
+KEY METRIC  │  Page Fault Count
+```
+
+**Key Concepts:**
+```
+┌─────────────────────────────────────┐
+│ Page        │ Fixed-size memory unit│
+│ Frame       │ Physical memory slot  │
+│ Page Fault  │ Reference to missing  │
+│             │ page (disk I/O needed)│
+│ Replacement │ Which page to evict?  │
+└─────────────────────────────────────┘
+```
+
+**FIFO Algorithm:**
+```
+Strategy: Remove oldest page (first in)
+Issue:    Belady's Anomaly (more frames ≠ fewer faults!)
+
+Example: Reference = [1 2 3 4 1 2 5 1 2 3 4 5]
+Frames: 3
+
+Time │ Ref │ Frame State      │ Fault? │ Action
+─────┼─────┼──────────────────┼────────┼──────────
+0    │ 1   │ [1 _ _]          │ YES    │ Load 1
+1    │ 2   │ [1 2 _]          │ YES    │ Load 2
+2    │ 3   │ [1 2 3]          │ YES    │ Load 3
+3    │ 4   │ [4 2 3]          │ YES    │ Remove 1 (oldest)
+4    │ 1   │ [4 1 3]          │ YES    │ Remove 2
+5    │ 2   │ [4 1 2]          │ YES    │ Remove 3
+6    │ 5   │ [5 1 2]          │ YES    │ Remove 4
+─────────────────────────────────────────
+Total Faults: 7
+```
+
+**LRU Algorithm:**
+```
+Strategy: Remove least recently used page
+Advantage: Better than FIFO (no Belady's anomaly)
+
+Example: Same reference string
+Time │ Ref │ Frame State      │ Fault? │ Last Used Order
+─────┼─────┼──────────────────┼────────┼─────────────────
+0    │ 1   │ [1 _ _]          │ YES    │ 1
+1    │ 2   │ [1 2 _]          │ YES    │ 1,2
+2    │ 3   │ [1 2 3]          │ YES    │ 1,2,3
+3    │ 4   │ [4 2 3]          │ YES    │ Remove 1 (least recent)
+4    │ 1   │ [4 2 1]          │ YES    │ Remove 3
+5    │ 2   │ [4 2 1]          │ NO     │ 2 already loaded
+6    │ 5   │ [5 2 1]          │ YES    │ Remove 4 (least recent)
+─────────────────────────────────────────
+Total Faults: 6 ✓ BETTER!
+```
+
+**Comparison:**
+| Feature | FIFO | LRU |
+|---------|------|-----|
+| **Average Faults** | Higher | Lower ✓ |
+| **Belady's Anomaly** | Yes ⚠️ | No ✓ |
+| **Implementation** | Simple | Complex (needs timestamp) |
+| **Real Systems** | No | Common ✓ |
+
+💡 **Viva Tips:**
+- Belady's Anomaly: FIFO can fault MORE with more frames!
+- LRU is optimal for working-set model
+- Real systems use approximate LRU (reference bits)
+
+---
+
+#### **pra13.sh** ─ Directory Organization
+
+```
+STRUCTURES  │  Single-Level, Two-Level
+PURPOSE     │  Organize files in file system
+TRADE-OFF   │  Simplicity vs. Organization
+```
+
+**Single-Level Directory:**
+```
+┌─────────────────────────────────┐
+│ Global File System              │
+├─────────────────────────────────┤
+│ ├─ file1.txt                    │
+│ ├─ file2.txt                    │
+│ ├─ report.pdf                   │
+│ ├─ program.sh                   │
+│ └─ data.csv                     │
+└─────────────────────────────────┘
+
+Pros:  Simple, fast lookup
+Cons:  No organization, name conflicts
+```
+
+**Two-Level Directory:**
+```
+┌─────────────────────────────────┐
+│ Root Directory                  │
+├──────────────────┬──────────────┤
+│ user1/           │ user2/       │
+├──────────────────┼──────────────┤
+│ ├─ file1.txt     │ ├─ file1.txt │
+│ ├─ project.sh    │ ├─ data.csv  │
+│ └─ notes.pdf     │ └─ report.md │
+└──────────────────┴──────────────┘
+
+Pros:  Organization, isolates users
+Cons:  Slightly slower (one level search)
+```
+
+**Implementation:**
+```bash
+# Single-Level: Array
+files=(file1 file2 file3)
+
+# Two-Level: Associative Array
+declare -A user_dir
+user_dir[user1]="file1 file2 file3"
+user_dir[user2]="fileA fileB fileC"
+```
+
+**Real-World Hierarchical:**
+```
+/
+├─ home/
+│  ├─ user1/
+│  │  ├─ documents/
+│  │  ├─ downloads/
+│  │  └─ projects/
+│  └─ user2/
+├─ etc/
+├─ var/
+└─ usr/
+```
+
+💡 **Viva Tips:**
+- Single-level: Name conflicts inevitable
+- Two-level: User isolation but limited
+- Hierarchical: Flexible, real systems use it
+
+---
+
+#### **pra14.sh** ─ Disk Scheduling
+
+```
+ALGORITHMS  │  FCFS, SCAN
+PURPOSE     │  Minimize disk head movement
+METRIC      │  Total Seek Time
+```
+
+**Disk Head Seek Time Calculation:**
+```
+seek_time = |current_head - request_cylinder|
+```
+
+**FCFS Algorithm:**
+```
+Strategy: Service requests in arrival order
+Issue:    High average seek time
+
+Example:
+Cylinders: 0-199
+Head: 100
+Requests: 50, 150, 80, 120, 190
+
+Path: 100→50→150→80→120→190
+       50  100  70  40  70
+────────────────────────────
+Total Seek: 330 units ⚠️ HIGH!
+
+Visualization:
+0 ──50──80──100─120─150──────190─199
+   ──────▲─►────◄───────────────▼
+```
+
+**SCAN Algorithm (Elevator):**
+```
+Strategy: Move in one direction, serve all requests
+          then return and sweep other direction
+
+Path: 100→50→0→80→120→150→190→199
+       50  50  80  40  30  40  9
+─────────────────────────────────────
+Total Seek: 299 units ✓ BETTER!
+
+Visualization:
+       ◄─────────►
+0 ──50──80──100─120─150──────190─199
+   ▲                          ▼
+   └─── Return here ──────────┘
+```
+
+**Comparison:**
+| Feature | FCFS | SCAN |
+|---------|------|------|
+| **Avg Seek Time** | Higher ⚠️ | Lower ✓ |
+| **Fairness** | Fair | Some starvation at edges |
+| **Complexity** | Simple | Medium |
+| **Real Systems** | Limited | Common ✓ |
+
+**Variants:**
+```
+┌─────────────────────────────┐
+│ C-SCAN (Circular Scan)      │
+│ Only sweep in one direction │
+│ Better than SCAN in practice│
+└─────────────────────────────┘
+
+┌─────────────────────────────┐
+│ LOOK / C-LOOK               │
+│ Don't go to end unnecessarily
+│ More efficient than SCAN    │
+└─────────────────────────────┘
+```
+
+💡 **Viva Tips:**
+- FCFS treats disk like queue (unfair)
+- SCAN mimics **elevator** behavior
+- C-SCAN prevents starvation at disk edges
+- Modern drives use read-ahead caching
+
+</div>
+
+---
+
+## 🎓 Common Viva Questions & Answers
+
+<details open>
+<summary><b>Q1: What is a shebang? Why is it important?</b></summary>
+
+**Answer:** Shebang (`#!/bin/bash`) is the first line that tells the OS which interpreter to use.
+
+**Examples:**
+- `#!/bin/bash` → Use bash shell
+- `#!/usr/bin/python3` → Use Python 3
+- `#!/bin/sh` → Use sh (more portable)
+
+**Why important?** Without shebang, OS might try wrong interpreter or fail to execute.
+
+**Usage:**
+```bash
+chmod +x script.sh
+./script.sh          # Uses shebang to find interpreter
+```
+
+</details>
+
+<details>
+<summary><b>Q2: Difference between $(( )) and $( )?</b></summary>
+
+**Answer:**
+- `$(( ))` → **Arithmetic expansion** (math operations)
+- `$( )` → **Command substitution** (execute commands)
+
+**Examples:**
+```bash
+x=$((2 + 3))              # x = 5
+x=$(echo "hello")         # x = hello
+y=$((10 / 3))             # y = 3 (integer division)
+files=$(ls)               # files = output of ls
+```
+
+</details>
+
+<details>
+<summary><b>Q3: Explain numeric comparison operators</b></summary>
+
+**Answer:**
+```bash
+[ $x -ge 5 ]   # Greater or Equal (≥)
+[ $x -gt 5 ]   # Greater Than (>)
+[ $x -lt 5 ]   # Less Than (<)
+[ $x -le 5 ]   # Less or Equal (≤)
+[ $x -eq 5 ]   # Equal (==)
+[ $x -ne 5 ]   # Not Equal (!=)
+```
+
+**Examples:**
+```bash
+if [ $age -ge 18 ]; then
+    echo "Adult"
+fi
+```
+
+</details>
+
+<details>
+<summary><b>Q4: How do bash arrays work?</b></summary>
+
+**Answer:**
+```bash
+# Indexed Array (0-based)
+arr=(elem0 elem1 elem2)
+echo ${arr[0]}              # elem0
+echo ${arr[@]}              # all elements
+echo ${#arr[@]}             # length = 3
+
+# Loop through array
+for item in "${arr[@]}"; do
+    echo "$item"
+done
+
+# Associative Array (like dictionary)
+declare -A dict
+dict[name]="John"
+dict[age]="25"
+echo ${dict[name]}          # John
+```
+
+</details>
+
+<details>
+<summary><b>Q5: FCFS vs SJF Scheduling - Which is better?</b></summary>
+
+**Answer:**
+
+| Metric | FCFS | SJF |
+|--------|------|-----|
+| **Avg Wait Time** | Higher ⚠️ | Lower ✓ |
+| **Fairness** | Fair | Unfair (starvation) |
+| **Preemption** | No | No |
+| **Info Needed** | None | Burst time |
+
+**Example:**
+```
+Jobs: [BT=8, BT=4, BT=2]
+
+FCFS:
+P1(8) → P2(4) → P3(2)
+WT: [0, 8, 12]  Avg WT = 6.67
+
+SJF:
+P3(2) → P2(4) → P1(8)
+WT: [0, 2, 6]   Avg WT = 2.67 ✓ BETTER!
+```
+
+**Verdict:** SJF better for avg wait, but FCFS more fair.
+
+</details>
+
+<details>
+<summary><b>Q6: What causes deadlock in Dining Philosophers?</b></summary>
+
+**Answer:** If all 5 philosophers pick their **left fork** simultaneously:
+```
+Philosopher 0 picks fork 0
+Philosopher 1 picks fork 1
+Philosopher 2 picks fork 2
+Philosopher 3 picks fork 3
+Philosopher 4 picks fork 4
+
+Now all right forks are taken!
+Everyone waits for a fork they can't get → DEADLOCK
+```
+
+**Prevention Methods:**
+1. **Hierarchy:** Always pick lower-numbered fork first
+2. **Odd Rule:** Philosopher 4 picks right fork first
+3. **Waiter:** Central controller allows only 4 to sit
+4. **Semaphores:** Protect fork state
+
+</details>
+
+<details>
+<summary><b>Q7: First Fit vs Best Fit - Which allocates better?</b></summary>
+
+**Answer:**
+
+| Feature | First Fit | Best Fit |
+|---------|-----------|----------|
+| **Logic** | 1st block ≥ size | Smallest block ≥ size |
+| **Speed** | O(n) Fast ✓ | O(n) Slow |
+| **Waste** | Moderate | Minimal ✓ |
+
+**Example:**
+```
+Blocks:    [100] [500] [200] [600]
+Request: 300
+
+First Fit: [100] [200*] [200] [600]   waste=200
+Best Fit:  [100] [500] [200] [300*]   waste=300
+```
+
+**Verdict:** First Fit best for practice (balance of speed & efficiency).
+
+</details>
+
+<details>
+<summary><b>Q8: What is Belady's Anomaly in page replacement?</b></summary>
+
+**Answer:** FIFO page replacement can cause **MORE faults with MORE frames**!
+
+**Example:**
+```
+Reference: 1 2 3 4 1 2 5 1 2 3 4 5
+
+With 3 frames: 7 page faults
+With 4 frames: 8 page faults (!!)
+
+Counterintuitive! More memory, more faults!
+```
+
+**Why?** FIFO evicts oldest page (not necessarily least needed).
+
+**Solution:** Use **LRU** (doesn't have anomaly).
+
+</details>
+
+<details>
+<summary><b>Q9: Why is SCAN better than FCFS for disk scheduling?</b></summary>
+
+**Answer:**
+
+**FCFS:** Serves requests in order received
+```
+Head at 100, Requests: 50, 150, 80, 120, 190
+100→50→150→80→120→190 = 330 seek time
+```
+
+**SCAN:** Moves in one direction, serves all requests
+```
+Head at 100, sweep left to 0, then right
+100→50→0→80→120→150→190 = 299 seek time ✓
+Mimics elevator behavior!
+```
+
+**Benefits:**
+- ✓ Reduces average seek time
+- ✓ More uniform response time
+- ✓ Prevents starvation better
+
+</details>
+
+<details>
+<summary><b>Q10: Explain semaphores in Producer-Consumer</b></summary>
+
+**Answer:** Semaphores are counters protecting shared resources:
+
+```
+mutex = 1    (binary semaphore, ensures mutual exclusion)
+empty = n    (counts empty buffer slots)
+full = 0     (counts filled buffer slots)
+```
+
+**Producer:**
+```
+wait(empty)      // Block if buffer full
+wait(mutex)      // Enter critical section
+produce()
+signal(mutex)    // Exit critical section
+signal(full)     // Signal consumer
+```
+
+**Consumer:**
+```
+wait(full)       // Block if buffer empty
+wait(mutex)      // Enter critical section
+consume()
+signal(mutex)    // Exit critical section
+signal(empty)    // Signal producer
+```
+
+**Result:** Producer waits if full, Consumer waits if empty!
+
+</details>
+
+---
+
+## 📚 Study Guide & Tips
+
+### 🎯 **How to Study for Viva**
+
+1. **Phase 1: Understand (30 min per script)**
+   - Read comments
+   - Understand logic flow
+   - Trace example execution
+
+2. **Phase 2: Practice (20 min per script)**
+   - Run with different inputs
+   - Modify code
+   - Predict output
+
+3. **Phase 3: Explain (15 min per script)**
+   - Describe to yourself
+   - Record explanation
+   - Practice clear communication
+
+4. **Phase 4: Mock Viva (30 min)**
+   - Answer viva questions
+   - Explain code logic
+   - Handle edge cases
+
+### ✅ **Checklist Before Exam**
+
+- [ ] All scripts executable (`chmod +x`)
+- [ ] Can explain each script in 2 minutes
+- [ ] Know key viva questions for each topic
+- [ ] Understand algorithms and complexity
+- [ ] Can draw diagrams (scheduling, page tables, etc.)
+- [ ] Ready to modify scripts on spot
+- [ ] Comfortable with bash syntax
+
+---
+
+## 🚀 Quick Reference
+
+### Bash Syntax Cheat Sheet
+
+| Syntax | Purpose |
+|--------|---------|
+| `$(( a + b ))` | Arithmetic |
+| `$? ` | Exit status |
+| `[ $x -gt 5 ]` | Comparison |
+| `if [ ]; then else fi` | Conditional |
+| `for ((i=0; i<n; i++))` | Loop |
+| `case $x in 1)...;; esac` | Switch |
+| `${arr[@]}` | Array access |
+| `declare -A arr` | Associative array |
+
+### Key Commands
+
+| Command | Purpose |
+|---------|---------|
+| `read var` | Read input |
+| `echo` | Print output |
+| `cp src dest` | Copy file |
+| `rm file` | Remove file |
+| `chmod +x file` | Make executable |
+| `bc` | Calculator |
+| `tr` | Character translation |
+| `awk` | Text processing |
+
+---
+
+## 📞 Getting Help
+
+**Have Questions?**
+- 🔍 Check the viva questions section
+- 💡 Review script comments
+- 📖 Read full documentation above
+- 🐛 Open an issue on GitHub
+
+---
+
+<div align="center">
+
+## ⭐ Support This Project
+
+If this repository helped you prepare for your exam, please **⭐ star** it!
+
+**Your star motivates continued improvements! 🚀**
+
+---
+
+### 📞 Connect
+
+[Issues](../../issues) · [Discussions](../../discussions) · [Email](mailto:your-email@example.com)
+
+---
+
+**Made with ❤️ for OS Students Everywhere**
+
+```
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                                                                              ║
+║                    Good Luck with Your OS Lab & Exams! 🎓                   ║
+║                                                                              ║
+║                 May Your Scripts Run and Your Semaphores Deadlock-Free! 🚀   ║
+║                                                                              ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+```
+
+</div>
